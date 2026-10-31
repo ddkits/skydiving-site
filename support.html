@@ -6,23 +6,22 @@
 <title>Support — Sky Diving X</title>
 <meta name="description" content="Get help with Sky Diving X.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#3498db">
+<meta name="theme-color" content="#146782">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="canonical" href="https://ddkits.github.io/skydiving-site/support.html">
+<link rel="canonical" href="https://skydiving.reallexi.io/support.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sky Diving X">
 <meta property="og:title" content="Support — Sky Diving X">
 <meta property="og:description" content="Get help with Sky Diving X.">
-<meta property="og:url" content="https://ddkits.github.io/skydiving-site/support.html">
+<meta property="og:url" content="https://skydiving.reallexi.io/support.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image" content="https://ddkits.github.io/skydiving-site/assets/og-card.jpg">
-<meta name="twitter:image" content="https://ddkits.github.io/skydiving-site/assets/og-card.jpg">
+
 <style>
-  :root { color-scheme: light dark; --bg:#ffffff; --fg:#17202a; --dim:#4a5560; --accent:#3498db; --line:#7d8794; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#0b0f14; --fg:#e8edf2; --dim:#9aa7b4; --accent:#2ecc71; --line:#6b7683; } }
+  :root { color-scheme: light dark; --bg:#ffffff; --fg:#17202a; --dim:#4a5560; --accent:#146782; --line:#7d8794; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b0f14; --fg:#e8edf2; --dim:#9aa7b4; --accent:#72D9E8; --line:#6b7683; } }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
   .skip { position:absolute; left:-9999px; }
@@ -65,11 +64,22 @@
 if(!p){var u=navigator.userAgent||'';p=/Android/i.test(u)?'android':/iPhone|iPad|iPod/i.test(u)?'ios'
 :(/Macintosh/.test(u)&&navigator.maxTouchPoints>1)?'ios':'';}
 if(p==='ios'||p==='android')document.documentElement.setAttribute('data-store',p);
+document.addEventListener('DOMContentLoaded',function(){(function scopeSiteLinks(document,location,platform){
+ if(platform!=='ios'&&platform!=='android')return;
+ for(const link of document.querySelectorAll('a[href]')){
+  const raw=link.getAttribute('href');if(!raw||raw.startsWith('#'))continue;
+  const url=new URL(raw,location.href);
+  if(url.origin!==location.origin||!['http:','https:'].includes(url.protocol))continue;
+  url.searchParams.set('platform',platform);link.setAttribute('href',url.href);
+ }
+})(document,location,p);});
 // Screenshot/key-art thumbnails open full-size in a native <dialog> -- event delegation, so this
 // runs safely in <head> before the buttons and dialog even exist in the DOM yet. Escape-to-close
 // and focus trapping come free with showModal(); only the backdrop click and the close button need
 // wiring by hand.
 document.addEventListener('click',function(e){
+  var f=e.target.closest('[data-gallery-filter]');
+  if(f){var key=f.getAttribute('data-gallery-filter');document.querySelectorAll('[data-gallery-filter]').forEach(function(b){b.setAttribute('aria-pressed',String(b===f));});document.querySelectorAll('[data-gallery-category]').forEach(function(card){card.hidden=key!=='all'&&card.getAttribute('data-gallery-category')!==key;});return;}
   var t=e.target.closest('.thumb');
   if(t){var d=document.querySelector('.lightbox');if(!d)return;var img=d.querySelector('img');
     img.src=t.getAttribute('data-full');img.alt=t.getAttribute('aria-label')||'';d.showModal();return;}
@@ -86,7 +96,7 @@ document.addEventListener('click',function(e){
 </header>
 <main id="main">
 <h1>Support</h1>
-<p class="updated">Last updated 2026-10-18</p>
+<p class="updated">Last updated 2026-10-31</p>
 
 <p>Email <a href="mailto:admin@reallexi.io">admin@reallexi.io</a> — we reply within two business days.</p>
 <h2>Before you write</h2>
