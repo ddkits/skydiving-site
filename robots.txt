@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://skydiving.reallexi.io/sitemap.xml
